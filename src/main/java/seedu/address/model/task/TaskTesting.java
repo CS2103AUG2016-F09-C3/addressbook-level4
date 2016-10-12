@@ -1,17 +1,17 @@
 package seedu.address.model.task;
 
-import seedu.address.model.task.DateTimeInfo;
+import seedu.address.model.person.DateTimeInfo;
 
-public class Task {
+public class TaskTesting {
     private String taskName;
     private DateTimeInfo dateTimeInfo;
     
     
-    public Task(String taskName) {
+/*    public TaskTesting(String taskName) {
         this(taskName, new DateTimeInfo());
-    }
+    }*/
     
-    public Task(String taskName, DateTimeInfo dateTimeInfo) {
+    public TaskTesting(String taskName, DateTimeInfo dateTimeInfo) {
         this.taskName = taskName;
         this.dateTimeInfo = dateTimeInfo;
 

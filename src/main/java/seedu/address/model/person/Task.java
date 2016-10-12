@@ -9,32 +9,36 @@ import java.util.Objects;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated.
  */
-public class Person implements ReadOnlyPerson {
+public class Task implements ReadOnlyTask {
 
     private Name name;
-    private Phone phone;
-    private Email email;
-    private Address address;
+    private DateTimeInfo dueDate;
+    private DateTimeInfo startTime;
+    private DateTimeInfo endTime;
+    private boolean isEvent;
+    private boolean isTask;
 
     private UniqueTagList tags;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, UniqueTagList tags) {
-        assert !CollectionUtil.isAnyNull(name, phone, email, address, tags);
+    public Task(Name name, DateTimeInfo dueDate, DateTimeInfo startTime, DateTimeInfo endTime, UniqueTagList tags) {
+        assert !CollectionUtil.isAnyNull(name, tags);
         this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
+        this.dueDate = dueDate;
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.tags = new UniqueTagList(tags); // protect internal tags from changes in the arg list
+        this.isTask = dueDate==null?false:true;
+        this.isEvent = startTime==null?false:true;
     }
 
     /**
      * Copy constructor.
      */
-    public Person(ReadOnlyPerson source) {
-        this(source.getName(), source.getPhone(), source.getEmail(), source.getAddress(), source.getTags());
+    public Task(ReadOnlyTask source) {
+        this(source.getName(), source.getDueDate(), source.getStartTime(), source.getEndTime(), source.getTags());
     }
 
     @Override
@@ -43,18 +47,28 @@ public class Person implements ReadOnlyPerson {
     }
 
     @Override
-    public Phone getPhone() {
-        return phone;
+    public boolean getIsTask() {
+        return isTask;
     }
 
     @Override
-    public Email getEmail() {
-        return email;
+    public boolean getIsEvent() {
+        return isEvent;
     }
 
     @Override
-    public Address getAddress() {
-        return address;
+    public DateTimeInfo getDueDate() {
+        return dueDate;
+    }
+    
+    @Override
+    public DateTimeInfo getStartTime() {
+        return startTime;
+    }
+    
+    @Override
+    public DateTimeInfo getEndTime() {
+        return endTime;
     }
 
     @Override
@@ -72,14 +86,14 @@ public class Person implements ReadOnlyPerson {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ReadOnlyPerson // instanceof handles nulls
-                && this.isSameStateAs((ReadOnlyPerson) other));
+                || (other instanceof ReadOnlyTask // instanceof handles nulls
+                && this.isSameStateAs((ReadOnlyTask) other));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, dueDate, startTime, endTime, isTask, isEvent, tags);
     }
 
     @Override
