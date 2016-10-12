@@ -71,6 +71,9 @@ public class Parser {
 
         case FindCommand.COMMAND_WORD:
             return prepareFind(arguments);
+            
+        case MarkCommand.COMMAND_WORD:
+            return prepareMark(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
@@ -84,6 +87,17 @@ public class Parser {
         default:
             return new IncorrectCommand(MESSAGE_UNKNOWN_COMMAND);
         }
+    }
+
+    private Command prepareMark(String args) {
+
+        Optional<Integer> index = parseIndex(args);
+        if(!index.isPresent()){
+            return new IncorrectCommand(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE));
+        }
+
+        return new MarkCommand(index.get());            
     }
 
     /**

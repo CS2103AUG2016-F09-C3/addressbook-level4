@@ -12,33 +12,33 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the task-tracker level
  * Duplicates are not allowed (by .equals comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniqueTaskList persons;
+    private final UniqueTaskList task;
     private final UniqueTagList tags;
 
     {
-        persons = new UniqueTaskList();
+        task = new UniqueTaskList();
         tags = new UniqueTagList();
     }
 
     public AddressBook() {}
 
     /**
-     * Persons and Tags are copied into this addressbook
+     * Persons and Tags are copied into this taskstracker
      */
     public AddressBook(ReadOnlyAddressBook toBeCopied) {
         this(toBeCopied.getUniqueTaskList(), toBeCopied.getUniqueTagList());
     }
 
     /**
-     * Persons and Tags are copied into this addressbook
+     * Persons and Tags are copied into this taskstracker
      */
-    public AddressBook(UniqueTaskList persons, UniqueTagList tags) {
-        resetData(persons.getInternalList(), tags.getInternalList());
+    public AddressBook(UniqueTaskList tasks, UniqueTagList tags) {
+        resetData(tasks.getInternalList(), tags.getInternalList());
     }
 
     public static ReadOnlyAddressBook getEmptyAddressBook() {
@@ -48,19 +48,19 @@ public class AddressBook implements ReadOnlyAddressBook {
 //// list overwrite operations
 
     public ObservableList<Task> getTasks() {
-        return persons.getInternalList();
+        return task.getInternalList();
     }
 
     public void setTasks(List<Task> tasks) {
-        this.persons.getInternalList().setAll(tasks);
+        this.task.getInternalList().setAll(tasks);
     }
 
     public void setTags(Collection<Tag> tags) {
         this.tags.getInternalList().setAll(tags);
     }
 
-    public void resetData(Collection<? extends ReadOnlyTask> newPersons, Collection<Tag> newTags) {
-        setTasks(newPersons.stream().map(Task::new).collect(Collectors.toList()));
+    public void resetData(Collection<? extends ReadOnlyTask> newTasks, Collection<Tag> newTags) {
+        setTasks(newTasks.stream().map(Task::new).collect(Collectors.toList()));
         setTags(newTags);
     }
 
@@ -68,28 +68,28 @@ public class AddressBook implements ReadOnlyAddressBook {
         resetData(newData.getPersonList(), newData.getTagList());
     }
 
-//// person-level operations
+//// task-level operations
 
     /**
-     * Adds a person to the address book.
-     * Also checks the new person's tags and updates {@link #tags} with any new tags found,
-     * and updates the Tag objects in the person to point to those in {@link #tags}.
+     * Adds a task to the tasks tracker.
+     * Also checks the new task's tags and updates {@link #tags} with any new tags found,
+     * and updates the Tag objects in the task to point to those in {@link #tags}.
      *
-     * @throws UniqueTaskList.DuplicatePersonException if an equivalent person already exists.
+     * @throws UniqueTaskList.DuplicatePersonException if an equivalent task already exists.
      */
     public void addTask(Task p) throws DuplicateTaskException {
         syncTagsWithMasterList(p);
-        persons.add(p);
+        task.add(p);
     }
 
     /**
-     * Ensures that every tag in this person:
+     * Ensures that every tag in this task:
      *  - exists in the master list {@link #tags}
      *  - points to a Tag object in the master list
      */
     private void syncTagsWithMasterList(Task task) {
-        final UniqueTagList personTags = task.getTags();
-        tags.mergeFrom(personTags);
+        final UniqueTagList taskTags = task.getTags();
+        tags.mergeFrom(taskTags);
 
         // Create map with values = tag object references in the master list
         final Map<Tag, Tag> masterTagObjects = new HashMap<>();
@@ -97,16 +97,16 @@ public class AddressBook implements ReadOnlyAddressBook {
             masterTagObjects.put(tag, tag);
         }
 
-        // Rebuild the list of person tags using references from the master list
+        // Rebuild the list of task tags using references from the master list
         final Set<Tag> commonTagReferences = new HashSet<>();
-        for (Tag tag : personTags) {
+        for (Tag tag : taskTags) {
             commonTagReferences.add(masterTagObjects.get(tag));
         }
         task.setTags(new UniqueTagList(commonTagReferences));
     }
 
     public boolean removePerson(ReadOnlyTask key) throws UniqueTaskList.TaskNotFoundException {
-        if (persons.remove(key)) {
+        if (task.remove(key)) {
             return true;
         } else {
             throw new UniqueTaskList.TaskNotFoundException();
@@ -123,13 +123,13 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public String toString() {
-        return persons.getInternalList().size() + " tasks, " + tags.getInternalList().size() +  " tags";
+        return task.getInternalList().size() + " tasks, " + tags.getInternalList().size() +  " tags";
         // TODO: refine later
     }
 
     @Override
     public List<ReadOnlyTask> getPersonList() {
-        return Collections.unmodifiableList(persons.getInternalList());
+        return Collections.unmodifiableList(task.getInternalList());
     }
 
     @Override
@@ -139,7 +139,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     @Override
     public UniqueTaskList getUniqueTaskList() {
-        return this.persons;
+        return this.task;
     }
 
     @Override
@@ -152,13 +152,17 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && this.persons.equals(((AddressBook) other).persons)
+                && this.task.equals(((AddressBook) other).task)
                 && this.tags.equals(((AddressBook) other).tags));
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(persons, tags);
+        return Objects.hash(task, tags);
+    }
+
+    public void markTask(int targetIndex) {
+        task.mark(targetIndex);
     }
 }

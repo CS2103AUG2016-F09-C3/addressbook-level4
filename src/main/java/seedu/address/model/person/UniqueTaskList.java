@@ -95,4 +95,12 @@ public class UniqueTaskList implements Iterable<Task> {
     public int hashCode() {
         return internalList.hashCode();
     }
+
+    public void mark(int targetIndex) {
+        assert targetIndex > 0; 
+        Task markTask = internalList.get(targetIndex);
+        markTask.markAsDone();
+        internalList.set(targetIndex, markTask);
+
+    }
 }

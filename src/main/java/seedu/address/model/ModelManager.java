@@ -78,6 +78,12 @@ public class ModelManager extends ComponentManager implements Model {
         indicateAddressBookChanged();
     }
 
+    @Override
+    public void markTask(int targetIndex) {
+        addressBook.markTask(targetIndex);
+        indicateAddressBookChanged();
+    }
+
     //=========== Filtered Person List Accessors ===============================================================
 
     @Override
