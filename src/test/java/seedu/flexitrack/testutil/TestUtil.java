@@ -65,15 +65,15 @@ public class TestUtil {
     private static Task[] getSampleTaskData() {
         try {
             return new Task[]{
-                    new Task(new Name("Ali Muster"), new DateTimeInfo("9482424"), new DateTimeInfo("hans@google.com"), new DateTimeInfo("4th street"), new UniqueTagList()),
-                    new Task(new Name("Boris Mueller"), new DateTimeInfo("87249245"), new DateTimeInfo("ruth@google.com"), new DateTimeInfo("81th street"), new UniqueTagList()),
-                    new Task(new Name("Carl Kurz"), new DateTimeInfo("95352563"), new DateTimeInfo("heinz@yahoo.com"), new DateTimeInfo("wall street"), new UniqueTagList()),
-                    new Task(new Name("Daniel Meier"), new DateTimeInfo("87652533"), new DateTimeInfo("cornelia@google.com"), new DateTimeInfo("10th street"), new UniqueTagList()),
-                    new Task(new Name("Elle Meyer"), new DateTimeInfo("9482224"), new DateTimeInfo("werner@gmail.com"), new DateTimeInfo("michegan ave"), new UniqueTagList()),
-                    new Task(new Name("Fiona Kunz"), new DateTimeInfo("9482427"), new DateTimeInfo("lydia@gmail.com"), new DateTimeInfo("little tokyo"), new UniqueTagList()),
-                    new Task(new Name("George Best"), new DateTimeInfo("9482442"), new DateTimeInfo("anna@google.com"), new DateTimeInfo("4th street"), new UniqueTagList()),
-                    new Task(new Name("Hoon Meier"), new DateTimeInfo("8482424"), new DateTimeInfo("stefan@mail.com"), new DateTimeInfo("little india"), new UniqueTagList()),
-                    new Task(new Name("Ida Mueller"), new DateTimeInfo("8482131"), new DateTimeInfo("hans@google.com"), new DateTimeInfo("chicago ave"), new UniqueTagList())
+                    new Task(new Name("Ali Muster"), new DateTimeInfo("21 June 5pm"), new DateTimeInfo(""), new DateTimeInfo(""), new UniqueTagList()),
+                    new Task(new Name("Boris Mueller"), new DateTimeInfo(""), new DateTimeInfo("22 June 5pm"), new DateTimeInfo("25 June 5pm"), new UniqueTagList()),
+                    new Task(new Name("Carl Kurz"), new DateTimeInfo("25 Jan 2pm"), new DateTimeInfo(""), new DateTimeInfo(""), new UniqueTagList()),
+                    new Task(new Name("Daniel Meier"), new DateTimeInfo(""), new DateTimeInfo("3 May 7pm"), new DateTimeInfo("5 May 8pm"), new UniqueTagList()),
+                    new Task(new Name("Elle Meyer"), new DateTimeInfo("21 June 9am"), new DateTimeInfo(""), new DateTimeInfo(""), new UniqueTagList()),
+                    new Task(new Name("Fiona Kunz"), new DateTimeInfo(""), new DateTimeInfo("12 Apr 11am"), new DateTimeInfo("13 Apr 1105am"), new UniqueTagList()),
+                    new Task(new Name("George Best"), new DateTimeInfo("26 Dec 12pm"), new DateTimeInfo(""), new DateTimeInfo(""), new UniqueTagList()),
+                    new Task(new Name("Hoon Meier"), new DateTimeInfo("11 Nov 1111am"), new DateTimeInfo(""), new DateTimeInfo(""), new UniqueTagList()),
+                    new Task(new Name("Ida Mueller"), new DateTimeInfo(""), new DateTimeInfo("07 Jul 830am"), new DateTimeInfo("09 Jul 830am"), new UniqueTagList())
             };
         } catch (IllegalValueException e) {
             assert false;
@@ -88,7 +88,8 @@ public class TestUtil {
         try {
             return new Tag[]{
                     new Tag("relatives"),
-                    new Tag("friends")
+                    new Tag("friends"),
+                    new Tag("Shoping")
             };
         } catch (IllegalValueException e) {
             assert false;

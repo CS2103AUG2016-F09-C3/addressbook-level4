@@ -14,7 +14,7 @@ public class TypicalTestTasks {
     public TypicalTestTasks() {
         try {
             homework1 =  new TaskBuilder().withName("Homework cs 2103").withDueDate("21 June 5pm")
-                    .withEndTime("29 Feb 23.23").withStartTime("29 Feb 23.23").build();
+                    .withEndTime("29 Feb 23.23").withStartTime("29 Feb 23.23").withTags(new String[]{}).build();
             homework2 = new TaskBuilder().withName("Homework cs 2101").withDueDate("23 Jun")
                     .withEndTime("29 Feb 23.23").withStartTime("29 Feb 23.23").build();
             homework3 = new TaskBuilder().withName("Homework ma 1505").withStartTime("29 Feb 23.23").withEndTime("29 Feb 23.23").withDueDate("29 Feb 23.23").build();
