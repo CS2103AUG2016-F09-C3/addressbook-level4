@@ -10,7 +10,7 @@ import seedu.flexitrack.commons.events.storage.DataSavingExceptionEvent;
 import seedu.flexitrack.model.FlexiTrack;
 import seedu.flexitrack.model.ReadOnlyFlexiTrack;
 import seedu.flexitrack.model.UserPrefs;
-import seedu.flexitrack.testutil.TypicalTestPersons;
+import seedu.flexitrack.testutil.TypicalTestTasks;
 import seedu.flexitrack.testutil.EventsCollector;
 
 import java.io.IOException;
@@ -55,7 +55,7 @@ public class StorageManagerTest {
 
     @Test
     public void addressBookReadSave() throws Exception {
-        FlexiTrack original = new TypicalTestPersons().getTypicalFlexiTrack();
+        FlexiTrack original = new TypicalTestTasks().getTypicalFlexiTrack();
         storageManager.saveFlexiTrack(original);
         ReadOnlyFlexiTrack retrieved = storageManager.readFlexiTrack().get();
         assertEquals(original, new FlexiTrack(retrieved));

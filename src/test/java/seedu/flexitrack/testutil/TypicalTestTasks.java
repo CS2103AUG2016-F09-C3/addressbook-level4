@@ -7,11 +7,11 @@ import seedu.flexitrack.model.task.*;
 /**
  *
  */
-public class TypicalTestPersons {
+public class TypicalTestTasks {
 
     public static TestTask alice, benson, carl, daniel, elle, fiona, george, hoon, ida;
 // TODO: change the test case 
-    public TypicalTestPersons() {
+    public TypicalTestTasks() {
         try {
             alice =  new PersonBuilder().withName("Alice Pauline").withAddress("123, Jurong West Ave 6, #08-111")
                     .withEmail("alice@gmail.com").withPhone("85355255")
@@ -49,7 +49,7 @@ public class TypicalTestPersons {
         }
     }
 
-    public TestTask[] getTypicalPersons() {
+    public TestTask[] getTypicalTasks() {
         return new TestTask[]{alice, benson, carl, daniel, elle, fiona, george};
     }
 

@@ -10,7 +10,7 @@ import seedu.flexitrack.commons.util.FileUtil;
 import seedu.flexitrack.model.FlexiTrack;
 import seedu.flexitrack.model.ReadOnlyFlexiTrack;
 import seedu.flexitrack.model.task.Task;
-import seedu.flexitrack.testutil.TypicalTestPersons;
+import seedu.flexitrack.testutil.TypicalTestTasks;
 
 import java.io.IOException;
 
@@ -61,7 +61,7 @@ public class XmlAddressBookStorageTest {
     @Test
     public void readAndSaveAddressBook_allInOrder_success() throws Exception {
         String filePath = testFolder.getRoot().getPath() + "TempAddressBook.xml";
-        TypicalTestPersons td = new TypicalTestPersons();
+        TypicalTestTasks td = new TypicalTestTasks();
         FlexiTrack original = td.getTypicalFlexiTrack();
         XmlFlexiTrackStorage xmlAddressBookStorage = new XmlFlexiTrackStorage(filePath);
 
@@ -71,14 +71,14 @@ public class XmlAddressBookStorageTest {
         assertEquals(original, new FlexiTrack(readBack));
 
         //Modify data, overwrite exiting file, and read back
-        original.addTask(new Task(TypicalTestPersons.hoon));
-        original.removeTask(new Task(TypicalTestPersons.alice));
+        original.addTask(new Task(TypicalTestTasks.hoon));
+        original.removeTask(new Task(TypicalTestTasks.alice));
         xmlAddressBookStorage.saveFlexiTrack(original, filePath);
         readBack = xmlAddressBookStorage.readFlexiTrack(filePath).get();
         assertEquals(original, new FlexiTrack(readBack));
 
         //Save and read without specifying file path
-        original.addTask(new Task(TypicalTestPersons.ida));
+        original.addTask(new Task(TypicalTestTasks.ida));
         xmlAddressBookStorage.saveFlexiTrack(original); //file path not specified
         readBack = xmlAddressBookStorage.readFlexiTrack().get(); //file path not specified
         assertEquals(original, new FlexiTrack(readBack));

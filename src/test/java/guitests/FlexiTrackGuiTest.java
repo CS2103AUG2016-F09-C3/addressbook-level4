@@ -13,7 +13,7 @@ import seedu.flexitrack.commons.core.EventsCenter;
 import seedu.flexitrack.model.FlexiTrack;
 import seedu.flexitrack.model.task.ReadOnlyTask;
 import seedu.flexitrack.testutil.TestUtil;
-import seedu.flexitrack.testutil.TypicalTestPersons;
+import seedu.flexitrack.testutil.TypicalTestTasks;
 
 import java.util.concurrent.TimeoutException;
 
@@ -31,7 +31,7 @@ public abstract class FlexiTrackGuiTest {
 
     TestApp testApp;
 
-    protected TypicalTestPersons td = new TypicalTestPersons();
+    protected TypicalTestTasks td = new TypicalTestTasks();
 
     /*
      *   Handles to GUI elements present at the start up are created in advance
@@ -77,7 +77,7 @@ public abstract class FlexiTrackGuiTest {
      */
     protected FlexiTrack getInitialData() {
         FlexiTrack ab = TestUtil.generateEmptyFlexiTrack();
-        TypicalTestPersons.loadFlexiTrackWithSampleData(ab);
+        TypicalTestTasks.loadFlexiTrackWithSampleData(ab);
         return ab;
     }
 

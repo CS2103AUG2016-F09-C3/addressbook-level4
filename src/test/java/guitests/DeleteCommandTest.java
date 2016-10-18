@@ -13,7 +13,7 @@ public class DeleteCommandTest extends FlexiTrackGuiTest {
     public void delete() {
 
         //delete the first in the list
-        TestTask[] currentList = td.getTypicalPersons();
+        TestTask[] currentList = td.getTypicalTasks();
         int targetIndex = 1;
         assertDeleteSuccess(targetIndex, currentList);
 

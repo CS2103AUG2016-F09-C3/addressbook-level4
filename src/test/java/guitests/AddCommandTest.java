@@ -15,7 +15,7 @@ public class AddCommandTest extends FlexiTrackGuiTest {
     public void add() {
         //add one task
         // TODO: getTypicalPersons need to be change 
-        TestTask[] currentList = td.getTypicalPersons();
+        TestTask[] currentList = td.getTypicalTasks();
         TestTask taskToAdd = td.hoon;
         assertAddSuccess(taskToAdd, currentList);
         currentList = TestUtil.addTasksToList(currentList, taskToAdd);
