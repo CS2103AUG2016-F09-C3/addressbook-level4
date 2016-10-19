@@ -71,7 +71,8 @@ public class XmlAddressBookStorageTest {
         assertEquals(original, new FlexiTrack(readBack));
 
         //Modify data, overwrite exiting file, and read back
-        original.addTask(new Task(TypicalTestTasks.basketball));
+        /*original.addTask(new Task(TypicalTestTasks.basketball));*/
+        original.addTask(new Task(TypicalTestTasks.homework2));
         original.removeTask(new Task(TypicalTestTasks.homework1));
         xmlAddressBookStorage.saveFlexiTrack(original, filePath);
         readBack = xmlAddressBookStorage.readFlexiTrack(filePath).get();
