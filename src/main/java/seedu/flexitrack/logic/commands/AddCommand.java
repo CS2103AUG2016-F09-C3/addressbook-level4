@@ -50,8 +50,11 @@ public class AddCommand extends Command {
 
     @Override
     public CommandResult execute() {
-        assert model != null;
+        assert model != null;        
         try {
+            if(model.checkBlock(toAdd)) {
+                return new CommandResult(BlockCommand.MESSAGE_DUPLICATE_TIME);
+            }
             model.addTask(toAdd);
             if (toAdd.getIsEvent()) {
                 return new CommandResult((String.format(MESSAGE_SUCCESS, toAdd)) + "\n" + DateTimeInfo

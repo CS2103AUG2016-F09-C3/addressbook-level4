@@ -34,7 +34,11 @@ public class DateTimeInfoParser {
     private void setTimingInfo(List<DateGroup> dateParser) {
         this.timingInfo = dateParser.get(0);
     }
-
+    
+    public DateGroup getTimingInfo() {
+        return timingInfo;
+    }
+    
     public String getParsedTimingInfo() {
         return timingInfo.getDates().toString();
     }

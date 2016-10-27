@@ -22,7 +22,7 @@ public class DateTimeInfo {
     private static final int DAYS_IN_A_WEEK = 7; 
     
     private String setTime;
-
+    private DateTimeInfoParser timeInfo;
     public DateTimeInfo(String givenTime) throws IllegalValueException {
         setDateGroupTime(givenTime);
     }
@@ -37,10 +37,15 @@ public class DateTimeInfo {
         final Matcher matcher = TIME_TYPE_DATA_ARGS_FORMAT.matcher(givenTime.trim());
         matcher.matches();
         DateTimeInfoParser parsedTiming = new DateTimeInfoParser(matcher.group("info"));
+        timeInfo = parsedTiming;
         this.setTime = parsedTiming.getParsedTimingInfo();
         formatTiming(parsedTiming.isInferred());
     }
-
+    
+    public DateTimeInfoParser getTimeInfo() {
+        return timeInfo;
+    }
+    
     private void formatTiming(boolean inferred) {
         if (inferred) {
             setTime = getDateMonthYear() + " 07:59";
