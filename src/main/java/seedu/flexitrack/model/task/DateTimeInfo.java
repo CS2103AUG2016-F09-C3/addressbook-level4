@@ -51,9 +51,11 @@ public class DateTimeInfo implements Comparable<DateTimeInfo>{
         }
     }
     
+  //@@author A0138455Y
     public DateTimeInfoParser getTimeInfo() {
         return timeInfo;
     }
+  //@@author
 
     /**
      * Change the format of the timing saved in setTime 

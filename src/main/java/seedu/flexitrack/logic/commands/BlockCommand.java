@@ -16,6 +16,7 @@ import seedu.flexitrack.model.task.UniqueTaskList.TaskNotFoundException;
 /**
  * Adds a block  event period to the FlexiTrack.
  */
+//@@author A0138455Y
 public class BlockCommand extends Command {
 public static final String COMMAND_WORD = "block";
     

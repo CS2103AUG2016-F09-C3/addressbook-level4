@@ -110,7 +110,8 @@ public class Task implements ReadOnlyTask{
     public String toString() {
         return getAsText();
     }
-
+    
+  //@@author A0138455Y
     private void setIsDone(boolean isDone) {     
         if (isDone && !this.isDone) {
             name.setAsMark();
@@ -129,7 +130,8 @@ public class Task implements ReadOnlyTask{
             setIsDone(isDone);
         }
     }
-
+  //@@author
+    
     public void setName(String name) {
         this.name.setName(name);
     }

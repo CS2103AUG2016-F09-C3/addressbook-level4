@@ -19,6 +19,7 @@ import seedu.flexitrack.commons.core.UnmodifiableObservableList;
  * Selects a task identified using it's last displayed index from the
  * FlexiTrack.
  */
+//@@author A0138455Y
 public class MarkCommand extends Command {
 
     public final int targetIndex;

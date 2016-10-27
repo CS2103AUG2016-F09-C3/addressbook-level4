@@ -17,6 +17,7 @@ import seedu.flexitrack.model.task.UniqueTaskList.TaskNotFoundException;
  * Selects a task identified using it's last displayed index from the
  * FlexiTrack.
  */
+//@@author A0138455Y
 public class UnmarkCommand extends Command {
     public final int targetIndex;
 

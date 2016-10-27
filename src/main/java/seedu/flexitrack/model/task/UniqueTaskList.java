@@ -113,6 +113,7 @@ public class UniqueTaskList implements Iterable<Task> {
         return internalList.hashCode();
     }
 
+  //@@author A0138455Y
     public void mark(ReadOnlyTask targetTask, boolean isDone) throws IllegalValueException {
         assert targetTask != null;      
         int targetIndex = internalList.indexOf(targetTask);
@@ -121,6 +122,7 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.set(targetIndex, markTask);
 
     }
+  //@@author
 
     public Task edit(int targetIndex, String[] args)
             throws IllegalEditException, TaskNotFoundException, IllegalValueException {

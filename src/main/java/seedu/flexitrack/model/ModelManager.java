@@ -87,6 +87,7 @@ public class ModelManager extends ComponentManager implements Model {
         indicateFlexiTrackerChanged();
     }
 
+  //@@author A0138455Y
     @Override
     public void markTask(ReadOnlyTask targetIndex) throws IllegalValueException {
         flexiTracker.markTask(targetIndex);
@@ -98,6 +99,7 @@ public class ModelManager extends ComponentManager implements Model {
         flexiTracker.unmarkTask(targetIndex);
         indicateFlexiTrackerChanged();
     }
+  //@@author
 
     @Override
     public Task editTask(int taskToEdit, String[] args)
@@ -107,10 +109,12 @@ public class ModelManager extends ComponentManager implements Model {
         return editedTask;
     }
     
+  //@@author A0138455Y
     @Override
     public boolean checkBlock(Task toCheck) throws DuplicateTaskException {
         return flexiTracker.checkBlock(toCheck);
     }
+  //@@author
 
     // =========== Filtered Tasks List Accessors
     // ===============================================================

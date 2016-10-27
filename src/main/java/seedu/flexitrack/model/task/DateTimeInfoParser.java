@@ -44,9 +44,11 @@ public class DateTimeInfoParser {
         return timingInfo.getDates();
     }
     
+  //@@author A0138455Y
     public DateGroup getTimingInfo() {
         return timingInfo;
     }
+  //@@author
 
     public boolean isInferred() {
         return timingInfo.isTimeInferred();

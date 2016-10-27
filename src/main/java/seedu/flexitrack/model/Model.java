@@ -45,7 +45,8 @@ public interface Model {
      * keywords
      */
     void updateFilteredTaskList(Set<String> keywords);
-
+  
+    //@@author A0138455Y
     /**
      * Marks the given task as done
      * 
@@ -59,7 +60,7 @@ public interface Model {
      * @throws TaskNotFoundException
      */
     void unmarkTask(ReadOnlyTask taskToMark) throws IllegalValueException;
-
+  //@@author
     /**
      * Edits the given task
      * 
@@ -67,13 +68,15 @@ public interface Model {
      */
     Task editTask(int taskToEdit, String[] args)
             throws UniqueTaskList.TaskNotFoundException, UniqueTaskList.IllegalEditException, IllegalValueException;
-    
+  
+    //@@author A0138455Y
     /**
      * 
      * @param Task toAdd
      * @return true if new event want to place at a period that reserve for other event
      */
     boolean checkBlock(Task toAdd) throws DuplicateTaskException;
+  //@@author
 
     void indicateFlexiTrackerChanged();
 
