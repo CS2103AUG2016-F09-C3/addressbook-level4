@@ -193,7 +193,7 @@ public class FlexiTrack implements ReadOnlyFlexiTrack {
     
     public boolean checkBlock(Task toCheck) throws DuplicateTaskException {
         setBlockList();
-
+        System.out.println("Size: "+blockList.getInternalList().size());
         if(blockList.getInternalList().size()==0) {
             System.out.println("block list equal to 0");
             return false;
@@ -211,7 +211,10 @@ public class FlexiTrack implements ReadOnlyFlexiTrack {
         Date start2 = blockDate.getStartTime().getTimeInfo().getTimingInfo().getDates().get(0);
         Date end1 = toCheck.getEndTime().getTimeInfo().getTimingInfo().getDates().get(0);
         Date end2 = blockDate.getEndTime().getTimeInfo().getTimingInfo().getDates().get(0);
-
+        /*System.out.println(start1.toString()+" "+start1.compareTo(start2));
+        System.out.println(start2.toString()+" "+start1.compareTo(end2));
+        System.out.println(end1.toString()+" "+end1.compareTo(start2));
+        System.out.println(end2.toString()+" "+end1.compareTo(end2));*/
         if((start1.compareTo(start2)>=0 && start1.compareTo(end2)<=0) || 
                 (end1.compareTo(start2)>=0 && end1.compareTo(end2)<=0)) {
             return true;
