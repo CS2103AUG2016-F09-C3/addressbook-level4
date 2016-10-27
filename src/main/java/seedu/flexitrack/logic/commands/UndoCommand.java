@@ -56,6 +56,9 @@ public class UndoCommand extends Command {
         case "edit":   
             undo = new EditCommand(); 
             break;
+        case "block":   
+            undo = new BlockCommand(); 
+            break;
         case "list":
         case "find":
             if (uiCommandRecord.peek().equals("list")){
