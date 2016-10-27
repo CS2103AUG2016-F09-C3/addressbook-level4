@@ -40,7 +40,10 @@ public class UndoCommand extends Command {
             break;
         case "clear": 
             undo = new ClearCommand(); 
-            break; 
+            break;
+        case "block":   
+            undo = new BlockCommand(); 
+            break;
         case "edit":   
             undo = new EditCommand(); 
             break;
