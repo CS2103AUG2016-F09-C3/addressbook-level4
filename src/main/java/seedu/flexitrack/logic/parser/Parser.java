@@ -502,7 +502,7 @@ public class Parser {
         // Validate arg string format
         try {
             //@@author A0147092E
-            if (args.trim().contains("fr/") || args.trim().contains("ty/")) {
+            if (args.trim().contains("fr/") || args.trim().contains("FR/")) {
                 if (matcherRecurringFloatingTask.matches()) {
                     return addRecurring(matcherRecurringFloatingTask, "floating");
                 } else if (matcherRecurringEvent.matches()) {
@@ -528,7 +528,15 @@ public class Parser {
         }
     }
 
-    private AddCommand addFloatingTask(Matcher matcher) throws IllegalValueException {
+    private Command addFloatingTask(Matcher matcher) throws IllegalValueException {
+        if ((matcher.group("name").toLowerCase().contains("by/")) 
+                && (matcher.group("name").toLowerCase().contains("to/") || matcher.group("name").toLowerCase().contains("from/"))){
+            return new IncorrectCommand("Tasks should only have a due date.");
+        }
+        if ((matcher.group("name").toLowerCase().contains("from/") && !matcher.group("name").toLowerCase().contains("to/"))
+                || (!matcher.group("name").toLowerCase().contains("from/") && matcher.group("name").toLowerCase().contains("to/"))){
+            return new IncorrectCommand("Events should have both start time and end time.");
+        }
         return new AddCommand(matcher.group("name"), EMPTY_TIME_INFO, EMPTY_TIME_INFO, EMPTY_TIME_INFO);
     }
 
